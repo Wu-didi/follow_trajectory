@@ -339,6 +339,7 @@ class VehicleTrajectoryFollower:
         
     # 得到mpc迭代的结果
     def calculate_turn_angle(self, ego_state, ego_yaw, ego_v):
+        t0 = time.time()
         self.state.x = ego_state[0]
         self.state.y = ego_state[1]
         # self.state.yaw = math.radians(ego_yaw)
@@ -380,7 +381,7 @@ class VehicleTrajectoryFollower:
         
         print(self.state.x,self.state.y,self.state.v,self.state.yaw)
         print(self.cx[self.target_ind], self.cy[self.target_ind],self.cyaw[self.target_ind])
-
+        print("temp time :", time.time()-t0)
         di, ai = 0.0, 0.0
         if odelta is not None:
             di = odelta[0]
@@ -425,6 +426,7 @@ class VehicleTrajectoryFollower:
         else:
             print("MPC computation failed, using default values.")
             return 0, 0
+
                     
     def calc_ref_trajectory(self, state, cx, cy, cyaw, ck, sp, dl, pind):
         xref = np.zeros((NX, T + 1))

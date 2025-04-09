@@ -452,7 +452,7 @@ class VehicleTrajectoryFollower:
                 return False
         return True
 
-    def check_and_switch_trajectory(self, obstacles, safe_distance=4):
+    def check_and_switch_trajectory(self, obstacles, safe_distance=2):
         """
         检查当前轨迹是否安全，并在必要时进行轨迹切换或停车
         :param obstacles: 障碍物的坐标列表，格式为 [[x, y], ...]
@@ -674,13 +674,13 @@ def start_main(shared_data, can_use, follower, filter):
                 # 更新障碍物列表
                 obstacles_list = obstacles_memoryBank.copy()
                 for one in obstacles_list_xy:
-                    if  abs(one[0]) < 50 and abs(one[1]) < 4:
+                    if  abs(one[0]) < 10 and abs(one[1]) < 4:
                         obstacle_detected = True
                         break
                     else:
                         obstacle_detected = False
                 # 检查并切换轨迹或停车
-                # follower.check_and_switch_trajectory(obstacles_list, safe_distance=3)
+                follower.check_and_switch_trajectory(obstacles_list, safe_distance=1)
 
                 if follower.should_stop:
                     # 如果需要停车，发送停车指令
@@ -752,8 +752,8 @@ def send_frame(shared_data, can_use):
 def main():
     # 使用示例
     camera_index = 0
-    main_trajectory_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_shiyanzhongxin_0327.csv'
-    alternate_trajectory_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_haima-1119-right.csv'
+    main_trajectory_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_lane_change_left_0404.csv'
+    alternate_trajectory_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_lane_change_right_0404.csv'
     follower = VehicleTrajectoryFollower(main_trajectory_csv, alternate_trajectory_csv, target_index=5)
     # 创建过滤器实例
     filter = ISGSpeedFilter()

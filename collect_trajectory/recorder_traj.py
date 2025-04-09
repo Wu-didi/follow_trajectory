@@ -294,7 +294,7 @@ def start_record(interval, name):
 if __name__ == '__main__':
     mode = "recorder"
     interval = 0.2
-    name = "shiyanzhongxin_0327"
+    name = "lane_change_left_0404"
     # 监听是否停止采集
     keyboard_thread = threading.Thread(target=start_keyboard_listener, daemon=True)
     keyboard_thread.start()

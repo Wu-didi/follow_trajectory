@@ -140,7 +140,7 @@ def offset_point_utm(x, y, heading, offset_distance, direction='left'):
 
 def obstacle_position(lat0, lon0, heading, x, y):
     """
-    计算障碍物的经纬度
+    计算障碍物的utm
     :param lat0: 车辆的纬度（度）
     :param lon0: 车辆的经度（度）
     :param heading: 车辆的航向角（度）

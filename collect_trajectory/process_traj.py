@@ -42,7 +42,7 @@ def process_vehicle_trajectory(input_file, output_file, distance_threshold=1):
       
     print(f"Processing complete. Points with distance less than {distance_threshold}m have been skipped.")  
 
-input_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/shiyanzhongxin_0327.csv'  
-output_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_shiyanzhongxin_0327.csv'  
+input_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/lane_change_left_0404.csv'  
+output_csv = '/home/nvidia/vcii/follow_trajectory/collect_trajectory/processed_lane_change_left_0404.csv'  
 process_vehicle_trajectory(input_csv, output_csv)
 
